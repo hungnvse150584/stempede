@@ -150,6 +150,7 @@ namespace StempedeAPI
                 }
             });
 
+
             // Add Logging Services
             builder.Services.AddLogging(logging =>
             {
@@ -171,7 +172,8 @@ namespace StempedeAPI
 
             // Use CORS
 
-            app.UseCors("AllowReactApp");
+            //app.UseCors("AllowReactApp");
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             // Configure the HTTP request pipeline.  
             if (app.Environment.IsDevelopment())
