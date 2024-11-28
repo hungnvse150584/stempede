@@ -49,26 +49,26 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<UserRole> UserRoles { get; set; }
 
-    //public static string GetConnectionString(string connectionStringName)
-    //{
-    //    var config = new ConfigurationBuilder()
-    //        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-    //        .AddJsonFile("appsettings.json")
-    //        .Build();
-
-    //    string connectionString = config.GetConnectionString(connectionStringName);
-    //    return connectionString;
-    //}
     public static string GetConnectionString(string connectionStringName)
     {
         var config = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("appsettings.Development.json")
+            .AddJsonFile("appsettings.json")
             .Build();
 
         string connectionString = config.GetConnectionString(connectionStringName);
         return connectionString;
     }
+    //public static string GetConnectionString(string connectionStringName)
+    //{
+    //    var config = new ConfigurationBuilder()
+    //        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+    //        .AddJsonFile("appsettings.Development.json")
+    //        .Build();
+
+    //    string connectionString = config.GetConnectionString(connectionStringName);
+    //    return connectionString;
+    //}
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
          => optionsBuilder.UseSqlServer(GetConnectionString("DB"));
     protected override void OnModelCreating(ModelBuilder modelBuilder)
