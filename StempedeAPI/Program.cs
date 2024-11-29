@@ -175,9 +175,9 @@ namespace StempedeAPI
             
             //app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseRouting();
-            app.UseCors("AllowReactApp");
+            //app.UseCors("AllowReactApp");
 
-            //app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             // Configure the HTTP request pipeline.  
             if (app.Environment.IsDevelopment())
             {
