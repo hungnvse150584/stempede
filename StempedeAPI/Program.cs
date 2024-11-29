@@ -172,12 +172,12 @@ namespace StempedeAPI
 
             // Use CORS
 
-            //app.UseCors("AllowReactApp");
+            
             //app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseRouting();
-            
+            app.UseCors("AllowReactApp");
 
-            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            //app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             // Configure the HTTP request pipeline.  
             if (app.Environment.IsDevelopment())
             {
@@ -203,7 +203,7 @@ namespace StempedeAPI
                 });
             }
             else
-            {
+            {   
                 // Use default error handler in production
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
@@ -218,8 +218,12 @@ namespace StempedeAPI
             app.UseAuthorization();
 
             // Map Controllers
-            app.MapControllers();
+            //app.MapControllers();
 
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
             // Run the application
             app.Run();
         }
