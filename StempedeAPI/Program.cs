@@ -277,8 +277,11 @@ namespace StempedeAPI
                                     .AllowAnyHeader());
             });
 
+
             // Database and configurations
-            builder.Services.AddDbContext<AppDbContext>();
+            builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DB"))
+);
             builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 
             // JWT Authentication
