@@ -48,17 +48,26 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<UserPermission> UserPermissions { get; set; }
 
     public virtual DbSet<UserRole> UserRoles { get; set; }
-
-    public static string GetConnectionString(string connectionStringName)
+    public static string GetConnectionString()
     {
         var config = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json")
             .Build();
 
-        string connectionString = config.GetConnectionString(connectionStringName);
-        return connectionString;
+        
+        return config["ConnectionStrings:DB"];
     }
+    //public static string GetConnectionString(string connectionStringName)
+    //{
+    //    var config = new ConfigurationBuilder()
+    //        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+    //        .AddJsonFile("appsettings.json")
+    //        .Build();
+
+    //    string connectionString = config.GetConnectionString(connectionStringName);
+    //    return connectionString;
+    //}
     //public static string GetConnectionString(string connectionStringName)
     //{
     //    var config = new ConfigurationBuilder()
@@ -69,8 +78,8 @@ public partial class AppDbContext : DbContext
     //    string connectionString = config.GetConnectionString(connectionStringName);
     //    return connectionString;
     //}
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-         => optionsBuilder.UseSqlServer(GetConnectionString("DB"));
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //     => optionsBuilder.UseSqlServer(GetConnectionString("DB"));
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Cart>(entity =>
